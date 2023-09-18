@@ -30,5 +30,5 @@ def __list_all_modules():
 
 
 ALL_SETTINGS = sorted(__list_all_modules())
-log.info("Assistant bot plugins loaded: %s", str(ALL_SETTINGS))
+print(f"Assistant bot plugins loaded: %s", str(ALL_SETTINGS))
 __all__ = ALL_SETTINGS + ["ALL_SETTINGS"]
