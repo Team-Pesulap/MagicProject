@@ -192,8 +192,7 @@ def DBMagic():
         if MongoDB:
             return DBMongo(config.MONGO_URL)
     except BaseException as e:
-        LOGGER(__name__).exception(e)
-    exit()
+        print(f"ERROR: {e}")
     
     
 MDB = DBMagic()
