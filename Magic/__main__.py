@@ -14,11 +14,6 @@ from uvloop import install
 HELP_COMMANDS = {}
 
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-
 async def done():
     try:
         await ubot.join_chat("pesulaptelegram")
