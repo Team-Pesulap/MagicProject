@@ -10,7 +10,7 @@ async def copy_command(client, message: Message):
         await message.edit("Processing...")
         link = message.text.split(" ", 1)[1]
 
-        chat = int("-100" + str(link.split("/")[-2]))
+        chat = int(str(link.split("/")[-2]))
         msg_id = int(link.split("/")[-1])
         bkp = await client.get_messages(chat, msg_id)
         laras = bkp.caption if bkp.caption else None
