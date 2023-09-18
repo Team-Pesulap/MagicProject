@@ -12,25 +12,7 @@ from pyrogram.types import Message
 from Magic.helpers import *
 from Magic import *
 from config import *
-
-__MODULE__ = "VoiceChat"
-
-__HELP__ = """
-
-Bantuan Untuk Voice Chat
-
-• Perintah: <code>{0}startvc</code>
-• Penjelasan: Untuk memulai voice chat grup.
-
-• Perintah: <code>{0}stopvc</code>
-• Penjelasan: Untuk mengakhiri voice chat grup.
-
-• Perintah: <code>{0}joinvc</code>
-• Penjelasan: Untuk Menaikkan Akun Ke Obrolan Suara.
-
-• Perintah: <code>{0}leavevc</code>
-• Penjelasan: Untuk Menurun Kan Akun Dari Obrolan Suara.
-"""
+from pytgcalls import GroupCallFactory
 
 async def get_group_call(
     client: Client, message: Message, err_msg: str = ""
