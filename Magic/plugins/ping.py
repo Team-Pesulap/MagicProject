@@ -31,10 +31,12 @@ async def twing(client: Client, message: Message):
         return
 
 @ubot.on_message(filters.command("ping", prefix) & filters.me)
-async def pinx(client: Client, message: Message):
+async def pinx(client, message):
     mulai = datetime.now()
-    durasi = (mulai - mulai).microseconds / 1000
-    await message.reply_text(f"**Sepong!**\n" f"`%sms`" % (durasi))
+    p = await message.reply_text("Pong!")
+    berhenti = datetime.now()
+    durasi = (berhenti - mulai).microseconds / 1000
+    await p.edit(f"**Pong!**\n" f"`{durasi}ms`")
 
 
 @ubot.on_message(filters.command("woi", prefix) & filters.me)
