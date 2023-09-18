@@ -48,4 +48,4 @@ async def nyolongnih(client, message):
         await message.delete()
 
     except Exception as e:
-        print(f"ERROR: {e}")
+        await message.reply(f"ERROR: {e}")
