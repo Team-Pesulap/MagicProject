@@ -25,5 +25,5 @@ LOAD = os.environ.get("LOAD", "").split()
 NOLOAD = os.environ.get("NOLOAD", "").split()
 BOT_LOAD = os.environ.get("BOT_LOAD", "").split()
 BOT_NOLOAD = os.environ.get("BOT_NOLOAD", "").split()
-prefix = "."
+prefix = os.environ.get("prefix", ".")
 
