@@ -192,7 +192,7 @@ def DBMagic():
         if MongoDB:
             return DBMongo(config.MONGO_URL)
     except BaseException as e:
-        print(f"ERROR: No databases found. Inserting Mongodb or Redis Database into vars.")
+        print(f"ERROR: {e}")
     
     
 MDB = DBMagic()
