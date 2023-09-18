@@ -34,7 +34,7 @@ async def main():
             if not imported_module.__MODULE__.lower() in HELP_COMMANDS:
                 HELP_COMMANDS[imported_module.__MODULE__.lower()] = imported_module
             else:
-                raise Exception("Terdeteksi plugins yanh sama .")
+                raise Exception("Double Plugins Detected.")
         if hasattr(imported_module, "__HELP__") and imported_module.__HELP__:
             HELP_COMMANDS[imported_module.__MODULE__.lower()] = imported_module
     ubot_mod = ""
