@@ -37,7 +37,7 @@ class MPUser(Client):
 class MPBot(Client):
     def __init__(self):
         super().__init__(
-            name="ubot",
+            name="bot",
             api_hash=config.API_HASH,
             api_id=config.API_ID,
             bot_token=config.BOT_TOKEN,
