@@ -8,7 +8,7 @@ from config import *
 async def nyolongnih(client, message):
     try:
         await message.reply("Processing...")
-        link = get_arg(message)
+        link = message.text.split(" ", 1)[1]
         msg_id = int(link.split("/")[-1])
         
         if "t.me/c/" in link:
