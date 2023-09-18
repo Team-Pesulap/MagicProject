@@ -37,10 +37,10 @@ async def joinvc(client: Client, message: Message):
     with suppress(ValueError):
         chat_id = int(chat_id)
     try:
-        await client.group_call.join()
+        await client.vc.start(chat_id)
         await mmk.edit(f"**Successful joined the Voice Chat**\n└ **Chat ID**: {chat_id}")
         await asyncio.sleep(5)
-        await client.group_call.set_is_mute(True)
+        await client.vc.set_is_mute(True)
     except Exception as f:
         return await mmk.edit(f"ERROR: {f}")
 
