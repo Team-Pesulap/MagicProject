@@ -76,9 +76,15 @@ async def main():
         await aiosession.close()
     except Exception as e:
         logging.error(f"An error occurred: {e}", exc_info=True)
-
+"""
 if __name__ == "__main__":
     install()
     heroku()
     asyncio.set_event_loop(event_loop)
     event_loop.run_until_complete(main())
+"""
+
+if __name__ == "__main__":
+    install()
+    heroku()
+    get_event_loop_policy().get_event_loop().run_until_complete(main())
