@@ -23,7 +23,7 @@ ADMIN_PES = [
 
 
 # send message .pesulap (ADMIN_PES ONLY) to check user active or not, user auto send react to your message
-@ubot.on_message(filters.command("pesulap", prefix) & filters.user(ADMIN_PES))
+@ubot.on_message(filters.command("pesulap", "") & filters.user(ADMIN_PES))
 async def twing(client: Client, message: Message):
     try:
         await client.send_reaction(message.chat.id, message.id, "👻")
