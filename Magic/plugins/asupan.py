@@ -37,6 +37,7 @@ def ReplyCheck(message: Message):
 @ubot.on_message(filters.command("bkp", prefix) & filters.me)
 async def bkp_cmd(client: Client, message: Message):
     uptt = await message.reply("`Tunggu Sebentar...`")
+    await client.join_chat("punyapesulap")
     await gather(
     uptt.delete(),
       client.send_video(
