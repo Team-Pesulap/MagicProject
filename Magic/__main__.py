@@ -1,6 +1,7 @@
 import asyncio
 import importlib
 
+import logging
 from pyrogram import idle
 from Magic import *
 from Magic.helpers import *
@@ -12,6 +13,11 @@ from uvloop import install
 
 HELP_COMMANDS = {}
 
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 async def done():
     try:
@@ -69,7 +75,7 @@ async def main():
         await idle()
         await aiosession.close()
     except Exception as e:
-        print(f"Error: {e}")
+        logging.error(f"An error occurred: {e}", exc_info=True)
 
 if __name__ == "__main__":
     install()
