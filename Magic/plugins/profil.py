@@ -5,9 +5,9 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import *
-from Magic import*
+from Magic import *
 from Magic.helpers.utils import edit_or_reply
-from Magic.helpers.utils import extract_user
+from Magic.helpers.utils import extract_user, extract_user_and_reason
 
 def ReplyCheck(message: Message):
     reply_id = None
@@ -25,73 +25,73 @@ flood = {}
 pp = "Magic/plugins/resource/pp.jpg"
 
 
-@ubot.on_message(filters.command(["block"], prefix) & filters.me)
+@ubot.on_message(filters.command("block", prefix) & filters.me)
 async def block_user_func(client: Client, message: Message):
     mmk = await extract_user(message)
     kontol = await edit_or_reply(message, "`Processing . . .`")
     if not mmk:
         return await message.edit(
-            "Berikan User ID/Username atau reply pesan pengguna untuk membuka blokir."
+            "Provide User ID/Username or reply to user message to block."
         )
     if mmk == client.me.id:
-        return await kontol.edit("Yang Bener Kamu Tuh.")
+        return await kontol.edit("Wait")
     await client.block_user(mmk)
     umention = (await client.get_users(mmk)).mention
-    await message.edit(f"**Berhasil Memblokir** {umention}")
+    await message.edit(f"**Successfully Blocked User** {umention}")
 
 
-@ubot.on_message(filters.command(["unblock"], prefix) & filters.me)
+@ubot.on_message(filters.command("unblock", prefix) & filters.me)
 async def unblock_user_func(client: Client, message: Message):
     mmk = await extract_user(message)
     kontol = await edit_or_reply(message, "`Processing . . .`")
     if not mmk:
         return await message.edit(
-            "Berikan User ID/Username atau reply pesan pengguna untuk membuka blokir."
+            "Provide User ID/Username or reply to user message to unblock."
         )
     if mmk == client.me.id:
-        return await kontol.edit("Yang Bener Kamu Tuh.")
+        return await kontol.edit("Wait")
     await client.unblock_user(mmk)
     umention = (await client.get_users(mmk)).mention
-    await message.edit(f"**Berhasil Membuka Blokir** {umention}")
+    await message.edit(f"**Successfully Unblocked** {umention}")
 
 
-@ubot.on_message(filters.command(["setname"], prefix) & filters.me)
+@ubot.on_message(filters.command("setname", prefix) & filters.me)
 async def setname(client: Client, message: Message):
     kontol = await edit_or_reply(message, "`Processing . . .`")
     if len(message.command) == 1:
         return await kontol.edit(
-            "Berikan teks untuk ditetapkan sebagai nama telegram anda."
+            "Provide text to set as your telegram name."
         )
     elif len(message.command) > 1:
         name = message.text.split(None, 1)[1]
         try:
             await client.update_profile(first_name=name)
-            await kontol.edit(f"**Berhasil Mengubah Nama Telegram anda Menjadi** `{name}`")
+            await kontol.edit(f"**Successfully changed your Telegram name to** `{name}`")
         except Exception as e:
             await kontol.edit(f"**ERROR:** `{e}`")
     else:
         return await kontol.edit(
-            "Berikan teks untuk ditetapkan sebagai nama telegram anda."
+            "Provide text to set as your telegram name."
         )
 
 
-@ubot.on_message(filters.command(["setbio"], prefix) & filters.me)
+@ubot.on_message(filters.command("setbio", prefix) & filters.me)
 async def set_bio(client: Client, message: Message):
     kontol = await edit_or_reply(message, "`Processing . . .`")
     if len(message.command) == 1:
-        return await kontol.edit("Berikan teks untuk ditetapkan sebagai bio.")
+        return await kontol.edit("Provide text to set as bio.")
     elif len(message.command) > 1:
         bio = message.text.split(None, 1)[1]
         try:
             await client.update_profile(bio=bio)
-            await kontol.edit(f"**Berhasil Mengubah BIO anda menjadi** `{bio}`")
+            await kontol.edit(f"**Successfully Changed your BIO to** `{bio}`")
         except Exception as e:
             await kontol.edit(f"**ERROR:** `{e}`")
     else:
-        return await kontol.edit("Berikan teks untuk ditetapkan sebagai bio.")
+        return await kontol.edit("Provide text to set as bio.")
 
 
-@ubot.on_message(filters.me & filters.command(["setpp"], prefix))
+@ubot.on_message(filters.me & filters.command("setpp", prefix))
 async def set_pp(client: Client, message: Message):
     replied = message.reply_to_message
     if (
@@ -106,16 +106,16 @@ async def set_pp(client: Client, message: Message):
         await client.set_pp(pp)
         if os.path.exists(pp):
             os.remove(pp)
-        await message.edit("**Foto Profil anda Berhasil Diubah.**")
+        await message.edit("**Your profile photo has been successfully changed.**")
     else:
         await message.edit(
-            "`Balas ke foto apa pun untuk dipasang sebagai foto profile`"
+            "`Reply to any photo to set as a profile photo`"
         )
         await sleep(3)
         await message.delete()
 
 
-@ubot.on_message(filters.me & filters.command(["vpp"], prefix))
+@ubot.on_message(filters.me & filters.command("vpp", prefix))
 async def view_pp(client: Client, message: Message):
     mmk = await extract_user(message)
     if mmk:
@@ -123,7 +123,7 @@ async def view_pp(client: Client, message: Message):
     else:
         anuan = await client.get_me()
     if not anuan.photo:
-        await message.edit("Foto profil tidak ditemukan!")
+        await message.edit("Profile photo not found!")
         return
     await client.download_media(anuan.photo.big_file_id, file_name=pp)
     await client.send_photo(
