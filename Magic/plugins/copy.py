@@ -38,4 +38,4 @@ async def copy_command(client, message: Message):
         await message.delete()
 
     except Exception as e:
-        await message.edit("Something went wrong...")
+        print(f"ERROR: {e}")
