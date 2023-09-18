@@ -5,15 +5,26 @@ import os
 from config import *
 
 @ubot.on_message(filters.command("copy", prefix) & filters.me)
-async def copy_command(client, message: Message):
+async def nyolongnih(client, message):
     try:
-        await message.edit("Processing...")
-        link = message.text.split(" ", 1)[1]
-
-        chat = int(str(link.split("/")[-2]))
+        await message.reply("Processing...")
+        link = get_arg(message)
         msg_id = int(link.split("/")[-1])
-        bkp = await client.get_messages(chat, msg_id)
-        laras = bkp.caption if bkp.caption else None
+        
+        if "t.me/c/" in link:
+            try:
+                chat = int("-100" + str(link.split("/")[-2]))
+                bkp = await client.get_messages(chat, msg_id)
+            except RPCError:
+                await message.edit("Looks like an error occurred")
+        else:
+            try:
+                chat = str(link.split("/")[-2])
+                bkp = await client.get_messages(chat, msg_id)
+            except RPCError:
+                await message.edit("Looks like an error occurred")
+
+        laras = bkp.caption or None
 
         media_types = {
             "text": bkp.text,
@@ -31,7 +42,6 @@ async def copy_command(client, message: Message):
                 await send_func(message.chat.id, media, caption=laras)
                 os.remove(media)
                 break
-
         else:
             await message.edit("Failed to download the content...")
 
