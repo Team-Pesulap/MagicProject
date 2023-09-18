@@ -66,19 +66,16 @@ async def main():
     print("+===============+===============+===============+===============+")
     print("Berhasil Menginstall Plugins")
     try:
-    if MDB is None:
-        print("Tidak ada database yang terisi.")
-    else:
         print(f"Koneksi Ke Database {MDB.name}...")
         if MDB.ping():
             print(f"Koneksi Berhasil Ke {MDB.name}..")
             xxx = (await ubot.get_me()).id
             MDB.set_key("OWNER_ID", ubot.me.id)
-    await done()
-    await idle()
-    await aiosession.close()
-except Exception as e:
-    print(f"ERROR: {e}")
+        await done()
+        await idle()
+        await aiosession.close()
+    except Exception as e:
+        print(f"ERROR: {e}")
 
 if __name__ == "__main__":
     install()
