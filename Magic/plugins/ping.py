@@ -34,7 +34,7 @@ async def twing(client: Client, message: Message):
 async def pinx(client: Client, message: Message):
     mulai = datetime.now()
     berhenti = datetime.now()
-    durasi = (berhenti - mulai).microseconds / 1000
+    durasi = (mulai - berhenti).microseconds / 1000
     await message.reply_text(f"**Sepong!**\n" f"`%sms`" % (durasi))
 
 
