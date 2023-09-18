@@ -37,12 +37,12 @@ class MPUser(Client):
 class MPBot(Client):
     def __init__(self):
         super().__init__(
-            name="bot",
+            name="ubot",
             api_hash=config.API_HASH,
             api_id=config.API_ID,
             bot_token=config.BOT_TOKEN,
             in_memory=True,
-            plugins=dict(root="Magic/asisstant"),
+            plugins=dict(root="Magic/assistant"),
         )
 
     async def start(self):
