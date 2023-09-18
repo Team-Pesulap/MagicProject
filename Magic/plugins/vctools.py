@@ -53,7 +53,7 @@ async def leavevc(client, message):
     with suppress(ValueError):
         chat_id = int(chat_id)
     try:
-        await client.vc.leave()
+        await client.vc.stop()
     except Exception as f:
         return await edit_or_reply(message, f"**ERROR:** `{f}`")
     msg = "**Successfully leave the Voice Chat**\n**"
