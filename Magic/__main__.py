@@ -71,11 +71,11 @@ async def main():
             print(f"Koneksi Berhasil Ke {MDB.name}..")
             xxx = (await ubot.get_me()).id
             MDB.set_key("OWNER_ID", ubot.me.id)
-    except Exception as e:
-        print(f"ERROR: {e}")
         await done()
         await idle()
         await aiosession.close()
+    except Exception as e:
+        print(f"ERROR: {e}")
 
 if __name__ == "__main__":
     install()
