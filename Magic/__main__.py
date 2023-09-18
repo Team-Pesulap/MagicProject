@@ -28,6 +28,8 @@ async def done():
 
 async def main():
     await bot.start()
+    if MDB is None:
+        print("Tidak ada database yang terisi.")
     #for x in ALL_SETTINGS:
         #imported_module = importlib.import_module("Magic.assistant." + x)
         #importlib.reload(imported_module)
