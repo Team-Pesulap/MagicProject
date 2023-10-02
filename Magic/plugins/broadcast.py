@@ -42,7 +42,7 @@ async def global_broadcast(client: Client, message: Message):
     gagal = 0
     target = await get_target(client, "group")
     cekbl = MDB.get_key("BLACKLIST_GCAST") or []
-    cekbl.append(-1001861414061)
+    cekbl.append(-)
     MDB.set_key("BLACKLIST_GCAST", cekbl)
 
     for gc_id in target:
@@ -75,7 +75,7 @@ async def lock_bl(message, tipe):
     gc = int(tt[1]) if len(tt) == 2 else message.chat_id
     if tt.lower() == "addbl":
         add_bl(gc)
-        await message.reply(f"**Grup berhasil ditambahkan ke Blacklist Gcast**\n`{gc}`")
+        await message.reply(f"**Grup berhasil ditambahkan ke Blacklist Gcast Ya Kontol Kuda**\n`{gc}`")
     elif tt.lower() == "delbl":
         un_bl(gc)
-        await message.reply(f"**Grup berhasil dihapus dari Blacklist Gcast**\n`{gc}`")
+        await message.reply(f"**Grup berhasil dihapus dari Blacklist Gcast Ya Memek Busuk**\n`{gc}`")
